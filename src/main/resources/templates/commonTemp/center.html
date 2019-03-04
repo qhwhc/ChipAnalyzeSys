@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Center</title>
+</head>
+<body>
+
+    <!-- Start: Content -->
+    <div class="container-fluid content" th:fragment="commonMenu">
+
+    </div><!--/container-->
+    <div class="container-fluid content" th:fragment="commonDown">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="sidebar" >
+                <div class="sidebar-collapse">
+                    <!-- Sidebar Header Logo-->
+                    <div class="sidebar-header">
+                        <img src="assets/img/logo.png" class="img-responsive" alt="" />
+                    </div>
+                    <!-- Sidebar Menu-->
+                    <div class="sidebar-menu">
+                        <nav id="menu" class="nav-main" role="navigation">
+                            <ul class="nav nav-sidebar">
+                                <div class="panel-body text-center">
+                                    <div class="bk-avatar">
+                                        <img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
+                                    </div>
+                                    <div class="bk-padding-top-10">
+                                        <i class="fa fa-circle text-success"></i> <small>Administrator</small>
+                                    </div>
+                                </div>
+                                <div class="divider2"></div>
+
+                                <!--菜单-->
+                                <li th:utext="${webMenu}"></li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- End Sidebar Menu-->
+                </div>
+                <!-- Sidebar Footer-->
+                <div class="sidebar-footer">
+                    <ul class="sidebar-terms">
+                        <li><a href="../index.html#">Terms</a></li>
+                        <li><a href="../index.html#">Privacy</a></li>
+                        <li><a href="../index.html#">Help</a></li>
+                        <li><a href="../index.html#">About</a></li>
+                    </ul>
+                    <div class="copyright text-center">
+                        <small>Nadhif <i class="fa fa-coffee"></i> Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></small>
+                    </div>
+                </div>
+                <!-- End Sidebar Footer-->
+            </div>
+            <!-- End Sidebar -->
+        </div>
+    </div><!--/container-->
+    <!-- End: Content -->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <title>主页</title>
+</head>
+
+<body>
+    <!-- Start: Header -->
+    <div th:include="header::commonHeader"></div>
+    <!-- End: Header -->
+    <!-- Start: Content -->
+    <div class="container-fluid content">
+        <div class="row">
+
+            <!-- Sidebar -->
+            <div th:include="center::commonMenu"></div>
+            <!-- End Sidebar -->
+
+            <!-- Main Page -->
+            <div class="main ">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="pull-left">
+                        <ol class="breadcrumb visible-sm visible-md visible-lg">
+                            <li><a href="../index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                            <li class="active"><i class="fa fa-laptop"></i>Dashboard</li>
+                        </ol>
+                    </div>
+                    <div class="pull-right">
+                        <h2>Dashboard</h2>
+                    </div>
+                </div>
+                <!-- End Page Header -->
+                <!--Start:中间内容位置-->
+
+                <!--End:中间内容位置-->
+            </div>
+            <!-- End Main Page -->
+
+            <!-- Center_down -->
+            <div th:include="center::commonDown"></div>
+            <!-- End Center_down -->
+
+        </div>
+    </div><!--/container-->
+    <!-- End: Content -->
+    <!-- Start: Footer -->
+    <div th:include="footer::commonFooter"></div>
+    <!-- End: Footer -->
+</body>
+
+</html>
