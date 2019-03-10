@@ -11,6 +11,7 @@ public class SmseApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println("------>test");
     }
 
 }
