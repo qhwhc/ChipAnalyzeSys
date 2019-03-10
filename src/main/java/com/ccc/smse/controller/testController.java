@@ -11,7 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class testController {
     @RequestMapping("hello")
-    public String toindex(){
+    public String totest(){
         return "test";
+    }
+    @RequestMapping("index")
+    public String toindex(){
+        return "index";
+    }
+
+    @RequestMapping("menu")
+    public String toMenu(){
+        return "commonTemp/menu";
+    }
+
+    @RequestMapping("testMenu")
+    public  String toMenuTest(){
+        return "testMenu";
+    }
+    @RequestMapping("echartsDemo")
+    public  String toEchartsDemo(){
+        return "echartsTemp/lineChart";
     }
 }

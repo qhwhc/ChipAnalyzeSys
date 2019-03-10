@@ -5,6 +5,7 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 
+
 group = 'com.ccc'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -21,4 +22,6 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+    //热加载包
+    compile 'org.springframework.boot:spring-boot-devtools'
 }
