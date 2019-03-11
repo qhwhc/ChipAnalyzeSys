@@ -2,6 +2,7 @@ package com.ccc.smse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Author: cyb
@@ -10,26 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class testController {
-    @RequestMapping("hello")
-    public String totest(){
-        return "test";
-    }
-    @RequestMapping("index")
-    public String toindex(){
-        return "index";
+    /*菜单跳转*/
+    @RequestMapping("test")
+    public String jumpTo(@RequestParam(required = false) String jumpto){
+        return jumpto;
     }
 
-    @RequestMapping("menu")
-    public String toMenu(){
-        return "commonTemp/menu";
-    }
-
-    @RequestMapping("testMenu")
-    public  String toMenuTest(){
-        return "testMenu";
-    }
-    @RequestMapping("echartsDemo")
-    public  String toEchartsDemo(){
-        return "echartsTemp/lineChart";
-    }
 }

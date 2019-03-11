@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <title>主页</title>
+    <link href="css/chipTab.css" rel="stylesheet" />
+</head>
+
+<body>
+<!-- Start: Header -->
+<div th:include="commonTemp/header::commonHeader"></div>
+<!-- End: Header -->
+<!-- Start: Content -->
+<div class="container-fluid content">
+    <div class="row">
+
+        <!-- Sidebar -->
+        <div th:include="commonTemp/center::commonMenu"></div>
+        <!-- End Sidebar -->
+
+        <!-- Main Page -->
+        <div class="main ">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="pull-left">
+                    <ol class="breadcrumb visible-sm visible-md visible-lg">
+                        <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                        <li class="active"><i class="fa fa-laptop"></i>Dashboard</li>
+                    </ol>
+                </div>
+                <div class="pull-right">
+                    <h2>Dashboard</h2>
+                </div>
+            </div>
+            <!-- End Page Header -->
+            <!--Start:筛选栏-->
+            <div class="dataFilter"><div th:include="commonTemp/menu::commonMenu"></div></div>
+            <!--End:筛选栏-->
+            <!--Start:中间内容位置-->
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <button type="button" class="bk-margin-5 btn btn-primary">筛选</button>
+                    <div class="panel">
+                        <div class="panel-heading bk-bg-primary">
+                            <h6><i class="fa fa-table red"></i><span class="break"></span>Hover</h6>
+                            <div class="panel-actions">
+                                <a href="table.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                                <a href="table.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                <a href="table.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>Employe</th>
+                                        <th>Position</th>
+                                        <th>Salary</th>
+                                        <th>Contract</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>Willson</td>
+                                        <td>Developer</td>
+                                        <td>2563$</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+                                                    45%
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>James</td>
+                                        <td>SEO</td>
+                                        <td>5000$</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                                                    80%
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>Steven</td>
+                                        <td>Photographer</td>
+                                        <td>1269$</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                                                    30%
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>Aselay</td>
+                                        <td>Project manger</td>
+                                        <td>6253$</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+                                                    95%
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!--End:中间内容位置-->
+
+        <!-- End Main Page -->
+
+        <!-- Center_down -->
+        <div th:include="commonTemp/center::commonDown"></div>
+        <!-- End Center_down -->
+
+    </div>
+</div><!--/container-->
+<!-- End: Content -->
+<!-- Start: Footer -->
+<div th:include="commonTemp/footer::commonFooter"></div>
+<!-- End: Footer -->
+</body>
+
+</html>
