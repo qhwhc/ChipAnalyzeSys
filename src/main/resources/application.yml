@@ -1,17 +1,17 @@
 #开发配置
 spring:
   datasource:
-    url: jdbc:mysql://106.12.127.137:3306/smse?setUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://106.12.127.134:3306/smse?setUnicode=true&characterEncoding=utf8
     username: root
     password: admin
     driver-class-name: com.mysql.jdbc.Driver
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
+
 jpa:
   hibernate:
     ddl-auto: update
   show-sql: true
-
 thymeleaf:
   cache: false
 
