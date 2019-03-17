@@ -8,10 +8,10 @@ import javax.persistence.*;
  * @Version 1.0
  */
 @Entity
-@Table(name="testUser")
+@Table(name="test_user")
 public class TestUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "name")

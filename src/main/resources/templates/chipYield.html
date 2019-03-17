@@ -4,7 +4,6 @@
     <!-- Basic -->
     <meta charset="UTF-8" />
     <title>主页</title>
-    <link href="css/chipTab.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -25,7 +24,7 @@
             <div class="page-header">
                 <div class="pull-left">
                     <ol class="breadcrumb visible-sm visible-md visible-lg">
-                        <li><a href="index.html"><i class="icon fa fa-home"></i>Home</a></li>
+                        <li><a href="../index.html"><i class="icon fa fa-home"></i>Home</a></li>
                         <li class="active"><i class="fa fa-laptop"></i>Dashboard</li>
                     </ol>
                 </div>
@@ -34,12 +33,14 @@
                 </div>
             </div>
             <!-- End Page Header -->
+            <!--Start:中间内容位置-->
+
             <!--Start:筛选栏-->
             <div class="dataFilter"><div th:include="commonTemp/menu::commonMenu"></div></div>
             <!--End:筛选栏-->
-            <!--Start:中间内容位置-->
-            <div class="row">
 
+            <!--Start:测试表-->
+            <div class="row">
                 <div class="col-lg-12">
                     <button type="button" class="bk-margin-5 btn btn-primary">筛选</button>
                     <div class="panel">
@@ -133,15 +134,18 @@
                     </div>
                 </div>
             </div>
+            <!--End:测试表-->
+
+            <!--Start：测试图-->
             <div class="col-lg-12">
                 <div class="panel">
                     <div class="panel-body"><div th:include="echartsTemp/barCharts::barCharts"></div><div>
-                <div>
-            </div>
-        </div>
+                 <div>
+             </div>
+            <!--End：测试图-->
 
             <!--End:中间内容位置-->
-
+        </div>
         <!-- End Main Page -->
 
         <!-- Center_down -->
