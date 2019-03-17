@@ -5,10 +5,11 @@ body {
 .clearfix:before, .clearfix:after { content:""; display:table; } .clearfix:after { clear:both; overflow:hidden; } .clearfix { zoom:1; /* IE < 8 */ }
 
 .container {
-  width: 1120px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
+  /*width: 1120px;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .menu {
@@ -132,6 +133,9 @@ body {
   z-index: 2;
   top: -1px;
   cursor: pointer;
+}
+#ajaxdata{
+  display: none;
 }
 
 

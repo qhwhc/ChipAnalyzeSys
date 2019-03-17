@@ -4,6 +4,31 @@
     <!-- Basic -->
     <meta charset="UTF-8" />
     <title>主页</title>
+    <style>
+        .dataFilter{
+            float: none;
+            position: absolute;
+            z-index: 2;
+            margin-top: 40px;
+            display: none;
+
+        }
+    </style>
+    <script>
+        function filter(){
+            if($(".dataFilter").is(':hidden')){
+                $(".dataFilter").show();
+
+            }else{
+
+                $(".dataFilter").hide();
+
+            }
+        }
+        function dofilter() {
+            alert($("#ajaxdata").text());
+        }
+    </script>
 </head>
 
 <body>
@@ -36,13 +61,20 @@
             <!--Start:中间内容位置-->
 
             <!--Start:筛选栏-->
-            <div class="dataFilter"><div th:include="commonTemp/menu::commonMenu"></div></div>
+            <div class="row col-lg-12">
+                <div class="dataFilter panel">
+                    <div th:include="commonTemp/menu::commonMenu"></div>
+                </div>
+            </div>
+
+
             <!--End:筛选栏-->
 
             <!--Start:测试表-->
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="bk-margin-5 btn btn-primary">筛选</button>
+                    <button type="button" class="bk-margin-5 btn btn-primary" onclick="filter()">筛选</button>
+                    <button type="button" class="bk-margin-5 btn btn-primary" onclick="dofilter()">确定</button>
                     <div class="panel">
                         <div class="panel-heading bk-bg-primary">
                             <h6><i class="fa fa-table red"></i><span class="break"></span>Hover</h6>
@@ -137,7 +169,7 @@
             <!--End:测试表-->
 
             <!--Start：测试图-->
-            <div class="col-lg-12">
+            <div class="row col-lg-12">
                 <div class="panel">
                     <div class="panel-body"><div th:include="echartsTemp/barCharts::barCharts"></div><div>
                  <div>
