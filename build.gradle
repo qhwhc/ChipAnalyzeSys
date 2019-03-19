@@ -28,4 +28,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     //Druid连接池
     compile group: 'com.alibaba', name: 'druid', version: '1.0.9'
+    //poi
+    compile group: 'org.apache.poi', name: 'poi', version: '4.0.1'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
 }
