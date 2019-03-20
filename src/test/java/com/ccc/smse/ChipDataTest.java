@@ -48,7 +48,7 @@ public class ChipDataTest {
         Set<ChipData> chipDatas = new HashSet<ChipData>();
         chipDatas.add(chipData);
         chipYield.setChipDataSet(chipDatas);
-
-        chipYieldRepository.save(chipYield);
+        chipDataRepository.save(chipData);
+        //chipYieldRepository.save(chipYield);
     }
 }

@@ -25,7 +25,7 @@ public class ChipYield {
     @Column(name = "yield")
     private double yield;//良率
 
-    @OneToMany(mappedBy = "yield_id",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "chipYield",fetch = FetchType.EAGER)
     private Set<ChipData> chipDataSet = new HashSet<ChipData>();
 
     public Set<ChipData> getChipDataSet() {
