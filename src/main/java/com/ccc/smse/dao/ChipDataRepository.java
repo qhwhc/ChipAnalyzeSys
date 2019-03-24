@@ -1,7 +1,9 @@
 package com.ccc.smse.dao;
 
 import com.ccc.smse.pojo.ChipData;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * @Date: 2019-03-18 20:09
  * @Version 1.0
  */
-public interface ChipDataRepository extends JpaRepository<ChipData,Integer> {
+public interface ChipDataRepository extends JpaRepository<ChipData,Integer>, JpaSpecificationExecutor<ChipData> {
     @Query(value = "select distinct product_code from chip_data",nativeQuery = true)
     List<String> findProductCode();
     @Query(value = "select distinct process_period from chip_data",nativeQuery = true)

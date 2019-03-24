@@ -1,7 +1,8 @@
 package com.ccc.smse.service;
 
+import com.ccc.smse.pojo.FilterCondition;
+
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: cyb
@@ -9,5 +10,5 @@ import java.util.Map;
  * @Version 1.0
  */
 public interface FilterConditionService {
-    public Map<String, List<String>> getConditions();
+    public List<FilterCondition> getConditions();
 }

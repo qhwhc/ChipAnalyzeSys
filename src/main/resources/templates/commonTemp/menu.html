@@ -14,10 +14,10 @@
         请选择筛选条件
       </div>
       <th:block th:each="filterData : ${filterDatas}">
-        <div class="option-item clearfix js-option-item" th:attr="data-option=${filterData.key}">
-          <div class="headtitle" th:text="${filterData.key}"></div>
+        <div class="option-item clearfix js-option-item" th:attr="data-option=${filterData.dbName}">
+          <div class="headtitle" th:text="${filterData.showName}"></div>
           <ul class="detail js-detail" >
-                <th:block th:each="data : ${filterData.value}">
+                <th:block th:each="data : ${filterData.showDatas}">
                 <li><a href="javascript:;" th:attr="data-value=${data}" th:text="${data}"></a></li>
                 </th:block>
           </ul>
@@ -31,11 +31,11 @@
       </th:block>
 
 
-<!--      <div class="more-btn-container">
-        <a class="moreoption-btn" id="moreoption-btn">
-          更多选项
-        </a>
-     </div>-->
+      <!--<div class="more-btn-container">-->
+        <!--<a class="moreoption-btn" id="moreoption-btn">-->
+          <!--更多选项-->
+        <!--</a>-->
+      <!--</div>-->
 
       <div class="showoption" id="showoption">
         <div class="header">

@@ -1,9 +1,13 @@
 package com.ccc.smse;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ccc.smse.dao.ChipDataRepository;
 import com.ccc.smse.dao.ChipYieldRepository;
 import com.ccc.smse.pojo.ChipData;
 import com.ccc.smse.pojo.ChipYield;
+import com.ccc.smse.service.ChipDataService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +31,8 @@ public class ChipDataTest {
     private ChipDataRepository chipDataRepository;
     @Autowired
     private ChipYieldRepository chipYieldRepository;
+    @Autowired
+    private ChipDataService chipDataService;
     @Test
     public void testSave(){
         ChipData chipData = new ChipData();
@@ -101,5 +107,17 @@ public class ChipDataTest {
             System.out.println(c.getChipYield().getYield());
         }
         System.out.println();
+    }
+
+    @Test
+    public void findBycondition(){
+        JSONObject jsonArray = JSON.parseObject("{productCode:\"FB&MT\",operator:\"胡\"}");
+        List<ChipData> chipData = chipDataService.findAllByConditions(jsonArray);
+        System.out.println(chipData.size());
+        for (ChipData c: chipData) {
+            System.out.println("-----------");
+            System.out.println(c.getOperator());
+        }
+
     }
 }

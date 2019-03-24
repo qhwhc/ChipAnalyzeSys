@@ -1,5 +1,6 @@
 package com.ccc.smse.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ccc.smse.pojo.ChipData;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,6 @@ import java.util.List;
 
 public interface ChipDataService {
     public List<ChipData> findAll();
+
+    public List<ChipData> findAllByConditions(JSONObject jsonObject);
 }
