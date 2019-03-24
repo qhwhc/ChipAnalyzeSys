@@ -89,72 +89,38 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>
-                                            #
-                                        </th>
-                                        <th>Employe</th>
-                                        <th>Position</th>
-                                        <th>Salary</th>
-                                        <th>Contract</th>
+                                        <th>产品编码</th>
+                                        <th>批号</th>
+                                        <th>数量</th>
+                                        <th>工序段</th>
+                                        <th>工序</th>
+                                        <th>工艺条件</th>
+                                        <th>工作中心</th>
+                                        <th>作业单元</th>
+                                        <th>操作人</th>
+                                        <th>当道开始时间</th>
+                                        <th>当道结束时间</th>
+                                        <th>良率</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Willson</td>
-                                        <td>Developer</td>
-                                        <td>2563$</td>
+
+                                    <tr th:each="chipData : ${chipDatas}">
+                                        <td th:text="${chipData.productCode}"/>
+                                        <td th:text="${chipData.batchNumber}"/>
+                                        <td th:text="${chipData.numberPieces}" />
+                                        <td th:text="${chipData.processPeriod}" />
+                                        <td th:text="${chipData.process}"/>
+                                        <td th:text="${chipData.processConditions}"/>
+                                        <td th:text="${chipData.workCenter}"/>
+                                        <td th:text="${chipData.workUnit}"/>
+                                        <td th:text="${chipData.operator}"/>
+                                        <td th:text="${chipData.startTime}"/>
+                                        <td th:text="${chipData.endTime}"/>
                                         <td>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
                                                     45%
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>James</td>
-                                        <td>SEO</td>
-                                        <td>5000$</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                                                    80%
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            3
-                                        </td>
-                                        <td>Steven</td>
-                                        <td>Photographer</td>
-                                        <td>1269$</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                                                    30%
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            4
-                                        </td>
-                                        <td>Aselay</td>
-                                        <td>Project manger</td>
-                                        <td>6253$</td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
-                                                    95%
                                                 </div>
                                             </div>
                                         </td>
