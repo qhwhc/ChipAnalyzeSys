@@ -3,8 +3,10 @@ package com.ccc.smse.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ccc.smse.pojo.ChipData;
+import com.ccc.smse.pojo.WebMenu;
 import com.ccc.smse.service.ChipDataService;
 import com.ccc.smse.service.FilterConditionService;
+import com.ccc.smse.service.WebMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +28,17 @@ public class ChipDataController {
     ChipDataService chipDataService;
     @Autowired
     FilterConditionService filterConditionService;
-
+    @Autowired
+    WebMenuService webMenuService;
     @GetMapping(value="chipYield")
     public String toChipYield(@RequestParam(required = false) String filterData,Model model){
-        System.out.println(filterData);
+        /*菜单查询*/
+        List<WebMenu> webMenuList = webMenuService.findAll();
+        StringBuilder webMenu = new StringBuilder();
+        for(WebMenu WebMenu:webMenuList){
+            webMenu.append(WebMenu);
+        }
+        model.addAttribute("webMenu",webMenu.toString());
         List<ChipData> chipDatas;
         if("".equals(filterData) || filterData == null) {
             chipDatas = chipDataService.findAll();
