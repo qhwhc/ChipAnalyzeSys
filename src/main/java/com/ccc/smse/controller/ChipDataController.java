@@ -2,6 +2,7 @@ package com.ccc.smse.controller;
 
 import com.ccc.smse.pojo.ChipData;
 import com.ccc.smse.service.ChipDataService;
+import com.ccc.smse.service.FilterConditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,13 @@ import java.util.List;
 public class ChipDataController {
     @Autowired
     ChipDataService chipDataService;
-
+    @Autowired
+    FilterConditionService filterConditionService;
     @RequestMapping("chipYield")
     public String toChipYield(Model model){
         List<ChipData> chipDatas = chipDataService.findAll();
         model.addAttribute("chipDatas",chipDatas);
+        model.addAttribute("filterDatas",filterConditionService.getConditions());
         return "chipYield";
     }
 }

@@ -28,7 +28,7 @@ public class ChipDataTest {
     @Test
     public void testSave(){
         ChipData chipData = new ChipData();
-        chipData.setProductCode("6MTC1204FBJA5");
+        chipData.setProductCode("6MTC1204FB");
         chipData.setBatchNumber("OM8L3748");
         chipData.setNumberPieces(25);
         chipData.setProcessPeriod("P阱退火");
@@ -40,7 +40,7 @@ public class ChipDataTest {
         chipData.setStartTime("2018/11/25 11:04:57");
         chipData.setEndTime("2018/11/25 18:31:52");
         ChipYield chipYield = new ChipYield();
-        chipYield.setBatchNumber("6MTC1204FBJA5");
+        chipYield.setBatchNumber("6MTC1204FBJ");
         chipYield.setNumberPieces(24);
         chipYield.setParticles(10000);
         chipYield.setYield(0.95);
@@ -78,5 +78,10 @@ public class ChipDataTest {
         ChipData chipData = new ChipData();
         chipData.setId("1");
         chipDataRepository.delete(chipData);
+    }
+
+    @Test
+    public void testSql(){
+        System.out.println(chipDataRepository.findProductCode());
     }
 }
