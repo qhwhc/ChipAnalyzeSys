@@ -1,6 +1,7 @@
 package com.ccc.smse.pojo;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @Author: cyb
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "chip_data")
-public class ChipData {
+public class ChipData implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

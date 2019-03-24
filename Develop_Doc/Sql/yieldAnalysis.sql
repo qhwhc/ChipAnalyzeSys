@@ -14,7 +14,7 @@ drop table if exists CHIP_YIELD;
 create table chip_data
 (
   id                   int(40) not null auto_increment comment 'ID',
-  yield_id              int(40),
+  yield_id             int(40),
   batch_number         varchar(40) comment '批号',
   product_code         varchar(40) comment '产品编码',
   version              varchar(20) comment '版本',
@@ -33,7 +33,7 @@ create table chip_data
 /*==============================================================*/
 /* Table: CHIP_YIELD                                            */
 /*==============================================================*/
-create table CHIP_YIELD
+create table chip_yield
 (
   id                   int(40) not null auto_increment comment 'ID',
   batch_number varchar(40) comment '批号',

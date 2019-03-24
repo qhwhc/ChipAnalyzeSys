@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.Temporal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -68,7 +69,7 @@ public class ChipDataTest {
         chipYield2.setYield(0.95);
 
 
-        chipDataRepository.save(chipData);
+        //chipDataRepository.save(chipData);
         chipDataRepository.save(chipData2);
         //chipYieldRepository.save(chipYield);
     }
@@ -78,7 +79,7 @@ public class ChipDataTest {
         ChipYield chipYield = new ChipYield();
         chipYield.setNumberPieces(12345);
         chipYield.setYield(0.98);
-        chipYield.setBatchNumber("U8L4419");
+        chipYield.setBatchNumber("U8L4412");
         chipYieldRepository.save(chipYield);
     }
     @Test
@@ -95,6 +96,10 @@ public class ChipDataTest {
 
     @Test
     public void testFind(){
-
+        List<ChipData> chipData = chipDataRepository.findAll();
+        for (ChipData c:chipData) {
+            System.out.println(c.getChipYield().getYield());
+        }
+        System.out.println();
     }
 }
