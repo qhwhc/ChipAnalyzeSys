@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,16 @@ public class ChipDataController {
         }
         model.addAttribute("chipDatas",chipDatas);
         model.addAttribute("filterDatas",filterConditionService.getConditions());
+        String[] xAxis = new String[chipDatas.size()];
+        float[] yAxis = new float[chipDatas.size()];
+
+        for (int i = 0; i < chipDatas.size(); i++) {
+            xAxis[i] = chipDatas.get(i).getBatchNumber();
+            String percent = chipDatas.get(i).getChipYield().getYield().replace("%","");
+            yAxis[i] = Float.valueOf(percent) / 100;;
+        }
+        model.addAttribute("xAxis",xAxis);
+        model.addAttribute("yAxis",yAxis);
         return "chipYield";
     }
 }
