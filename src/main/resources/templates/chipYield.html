@@ -119,8 +119,7 @@
                                         <td th:text="${chipData.endTime}"/>
                                         <td>
                                             <div class="progress">
-                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                                    45%
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" th:attr="style='width:' + ${chipData.chipYield.yield}" th:text="${chipData.chipYield.yield}">
                                                 </div>
                                             </div>
                                         </td>
@@ -155,6 +154,7 @@
 <!-- End: Content -->
 <!-- Start: Footer -->
 <div th:include="commonTemp/footer::commonFooter"></div>
+
 <!-- End: Footer -->
 </body>
 

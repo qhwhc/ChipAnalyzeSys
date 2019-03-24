@@ -2,6 +2,8 @@ package com.ccc.smse.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,8 +71,9 @@ public class ChipYield implements Serializable {
         this.particles = particles;
     }
 
-    public double getYield() {
-        return yield;
+    public String getYield() {
+        DecimalFormat df = new DecimalFormat("0.00%");
+        return df.format(yield);
     }
 
     public void setYield(double yield) {
