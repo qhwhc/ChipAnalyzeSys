@@ -30,7 +30,7 @@ public class ChipDataController {
     FilterConditionService filterConditionService;
     @Autowired
     WebMenuService webMenuService;
-    @GetMapping(value="chipYield")
+    @GetMapping(value="index")
     public String toChipYield(@RequestParam(required = false) String filterData,Model model){
         /*菜单查询*/
         List<WebMenu> webMenuList = webMenuService.findAll();
