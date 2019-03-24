@@ -31,7 +31,7 @@ public class ChipDataController {
     @Autowired
     WebMenuService webMenuService;
     @GetMapping(value="index")
-    public String toChipYield(@RequestParam(required = false) String filterData,Model model){
+    public String toChipYield(@RequestParam(required = false) String filterData,String start,String end,Model model){
         /*菜单查询*/
         List<WebMenu> webMenuList = webMenuService.findAll();
         StringBuilder webMenu = new StringBuilder();
@@ -58,6 +58,8 @@ public class ChipDataController {
         }
         model.addAttribute("xAxis",xAxis);
         model.addAttribute("yAxis",yAxis);
+        System.out.println(start);
+        System.out.println(end);
         return "chipYield";
     }
 }

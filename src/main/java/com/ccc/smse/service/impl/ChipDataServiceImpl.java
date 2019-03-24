@@ -42,11 +42,11 @@ public class ChipDataServiceImpl implements ChipDataService {
                         String[] strs = entry.getValue().toString().split("&");
                         Predicate[] pres = new Predicate[strs.length];
                         for (int i = 0; i < strs.length; i++) {
-                            pres[i] = criteriaBuilder.like(root.get(entry.getKey()),"%"+strs[i]+"%");
+                            pres[i] = criteriaBuilder.equal(root.get(entry.getKey()),strs[i]);
                         }
                         params.add(criteriaBuilder.or(pres));
                     }else {
-                        params.add(criteriaBuilder.like(root.get(entry.getKey()),"%"+entry.getValue()+"%"));
+                        params.add(criteriaBuilder.equal(root.get(entry.getKey()),entry.getValue()));
                     }
 
                 }

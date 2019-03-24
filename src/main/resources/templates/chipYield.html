@@ -4,6 +4,12 @@
     <!-- Basic -->
     <meta charset="UTF-8" />
     <title>主页</title>
+    <link href="assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-datepicker/css/datepicker-theme.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+    <link href="assets/plugins/bootkit/css/bootkit.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
     <style>
         .dataFilter{
             float: none;
@@ -78,6 +84,16 @@
                         <input type="hidden" name="filterData" id="filter_form" value="">
                         <button type="button" class="bk-margin-5 btn btn-primary" onclick="filter()">筛选</button>
                         <button type="submit" class="bk-margin-5 btn btn-primary" onclick="dofilter()">确定</button>
+                        <div class="col-md-3">
+                            <div class="input-daterange input-group" data-plugin-datepicker="">
+													<span class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</span>
+                                <input type="text" class="form-control" name="start">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end">
+                            </div>
+                        </div>
                     </form>
                     <div class="panel">
                         <div class="panel-heading bk-bg-primary">
@@ -160,6 +176,17 @@
 <div th:include="commonTemp/footer::commonFooter"></div>
 <!-- End: Footer -->
 <script src="assets/js/chipYieldJs.js"></script>
+                <script src="assets/vendor/js/jquery.min.js"></script>
+                <script src="assets/vendor/js/jquery-2.1.1.min.js"></script>
+                <script src="assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
+                <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+                <script src="assets/vendor/skycons/js/skycons.js"></script>
+                <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+                <script src="assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+                <script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+                <script src="assets/plugins/maskedinput/js/jquery.maskedinput.js"></script>
+                <script src="assets/js/pages/form-elements.js"></script>
+
 </body>
 
 </html>
