@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.Temporal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,7 +47,6 @@ public class ChipDataTest {
         chipYield.setYield(0.95);
         Set<ChipData> chipDatas = new HashSet<ChipData>();
         chipDatas.add(chipData);
-        chipYield.setChipDataSet(chipDatas);
 
 
         ChipData chipData2 = new ChipData();
@@ -74,6 +74,14 @@ public class ChipDataTest {
     }
 
     @Test
+    public void testSaveChipYield(){
+        ChipYield chipYield = new ChipYield();
+        chipYield.setNumberPieces(12345);
+        chipYield.setYield(0.98);
+        chipYield.setBatchNumber("U8L4419");
+        chipYieldRepository.save(chipYield);
+    }
+    @Test
     public void testDelete(){
         ChipData chipData = new ChipData();
         chipData.setId("1");
@@ -83,5 +91,10 @@ public class ChipDataTest {
     @Test
     public void testSql(){
         System.out.println(chipDataRepository.findProductCode());
+    }
+
+    @Test
+    public void testFind(){
+
     }
 }

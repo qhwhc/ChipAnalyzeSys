@@ -41,7 +41,7 @@ public class ChipData {
     private String endTime;//当道结束时间
 
     @ManyToOne
-    @JoinColumn(name = "yield_id",insertable = false,updatable = false)
+    @JoinColumn(name = "batch_number",referencedColumnName = "batch_number",insertable = false,updatable = false)
     private ChipYield chipYield;//关联良率
 
     public ChipYield getChipYield() {
