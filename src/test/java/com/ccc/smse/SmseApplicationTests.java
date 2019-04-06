@@ -40,11 +40,16 @@ public class SmseApplicationTests {
     public void addMenu(){
         WebMenu webMenu = new WebMenu();
        // WebMenuSecond webMenuSecond1 = new WebMenuSecond();
-        webMenu.setId("1");
-        webMenu.setShowName("芯片良率");
+//        webMenu.setId("1");
+//        webMenu.setShowName("芯片良率");
+//        webMenu.setHref("index");
+//        webMenu.setParams("jumpto=chipYield");
+//        webMenu.setIron("<i class=\"fa fa-rocket\"></i>");
+        webMenu.setId("2");
+        webMenu.setShowName("数据处理");
         webMenu.setHref("index");
-        webMenu.setParams("jumpto=chipYield");
-        webMenu.setIron("<i class=\"fa fa-rocket\"></i>");
+        webMenu.setParams("jumpto=data");
+        webMenu.setIron("<i class=\"fa fa-tasks\"></i>");
         webMenuRepository.save(webMenu);
     }
 

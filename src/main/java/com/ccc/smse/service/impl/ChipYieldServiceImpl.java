@@ -1,6 +1,9 @@
 package com.ccc.smse.service.impl;
 
+import com.ccc.smse.dao.ChipYieldRepository;
+import com.ccc.smse.pojo.ChipYield;
 import com.ccc.smse.service.ChipYieldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,4 +13,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ChipYieldServiceImpl implements ChipYieldService {
+    @Autowired
+    ChipYieldRepository chipYieldRepository;
+    @Override
+    public void save(ChipYield chipYield) {
+        chipYieldRepository.save(chipYield);
+    }
 }

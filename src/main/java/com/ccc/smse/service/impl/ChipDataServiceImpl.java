@@ -54,6 +54,11 @@ public class ChipDataServiceImpl implements ChipDataService {
                             params.add(criteriaBuilder.lessThanOrEqualTo(root.get("endTime").as(String.class), fm.format(sdf.parse(entry.getValue().toString()))));
                             continue;
                         }
+
+                        if("q".equals(entry.getKey())) {
+                            params.add(criteriaBuilder.like(root.get("batchNumber"), "%" + entry.getValue().toString()+ "%"));
+                            continue;
+                        }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -75,5 +80,10 @@ public class ChipDataServiceImpl implements ChipDataService {
             }
         };
         return  chipDataRepository.findAll(spec);
+    }
+
+    @Override
+    public void save(ChipData chipData) {
+        chipDataRepository.save(chipData);
     }
 }

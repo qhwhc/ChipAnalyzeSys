@@ -6,10 +6,13 @@ import com.ccc.smse.service.ExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class ExcelController {
     List userList = new ArrayList();
 
     @RequestMapping("/import")
-    public String fileImport(@RequestParam("fileName") MultipartFile file,Model model) throws Exception {
+    public String fileImport(@RequestParam("file") MultipartFile file,Model model) throws Exception {
         if (!checkFileSize(file,1048575,"B")){
             returnInfoUtil = ReturnUtil.error("上传文件过大");
         }
@@ -72,5 +75,8 @@ public class ExcelController {
         return true;
     }
 
-
+    @RequestMapping("data")
+    public String toData(){
+        return "data";
+    }
 }

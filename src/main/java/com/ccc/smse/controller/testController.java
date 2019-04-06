@@ -34,4 +34,9 @@ public class testController {
         System.out.println(jsonObject.getString("processPeriod"));
         return "true";
     }
+
+    @RequestMapping("pageTest")
+    public String pageTest(){
+        return "pageTest";
+    }
 }

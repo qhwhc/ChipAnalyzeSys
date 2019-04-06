@@ -1,5 +1,6 @@
 package com.ccc.smse.service;
 
+import com.ccc.smse.pojo.ChipYield;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,4 +10,5 @@ import org.springframework.stereotype.Service;
  */
 
 public interface ChipYieldService {
+    public void save(ChipYield chipYield);
 }

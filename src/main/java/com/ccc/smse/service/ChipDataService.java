@@ -16,4 +16,6 @@ public interface ChipDataService {
     public List<ChipData> findAll();
 
     public List<ChipData> findAllByConditions(JSONObject jsonObject);
+
+    public void save(ChipData chipData);
 }

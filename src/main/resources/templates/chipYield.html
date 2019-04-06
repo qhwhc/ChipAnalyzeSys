@@ -61,7 +61,7 @@
                     </ol>
                 </div>
                 <div class="pull-right">
-                    <h2>Dashboard</h2>
+                    <h2>Magic-Data</h2>
                 </div>
             </div>
             <!-- End Page Header -->
@@ -106,7 +106,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover table-striped">
                                     <thead>
                                     <tr>
                                         <th>产品编码</th>
@@ -123,7 +123,7 @@
                                         <th>良率</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tablePage">
 
                                     <tr th:each="chipData : ${chipDatas}">
                                         <td th:text="${chipData.productCode}"/>
@@ -146,6 +146,23 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                                <!-- 底边分页栏代码 -->
+                                <div style="width:600px; margin:0 auto;">
+                                    <ul class="pagination" id="pageList">
+                                        <li id="spanPre" class="disabled"> <a href="javascript:pre();">&laquo;</a></li>
+                                        <li id="spanpage1" class="active"><a href="javascript:nPage(1)">1</a></li>
+                                        <li id="spanpage2" ><a href="javascript:nPage(2)">2</a></li>
+                                        <li id="spanpage3" ><a href="javascript:nPage(3)">3</a></li>
+                                        <li id="spanpage4" ><a href="javascript:nPage(4)">4</a></li>
+                                        <li id="spanpage5" ><a href="javascript:nPage(5)">5</a></li> <li id="spanpage6" ><a href="javascript:nPage(6)">6</a></li>
+                                        <li id="spanpage7" ><a href="javascript:nPage(7)">7</a></li>
+                                        <li id="spanpage8" ><a href="javascript:nPage(8)">8</a></li>
+                                        <li id="spanpage9" ><a href="javascript:nPage(9)">9</a></li>
+                                        <li id="spanpage10" ><a href="javascript:nPage(10)">10</a></li>
+                                        <!--<li id="spanpage2" ><a th:attr="href='javascript:nPage('+${chipDataStats.index}+')'" th:text="${chipDataStats.index}">-->
+                                        <li id="spanNext" ><a href="javascript:next()">&raquo;</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -176,17 +193,17 @@
 <div th:include="commonTemp/footer::commonFooter"></div>
 <!-- End: Footer -->
 <script src="assets/js/chipYieldJs.js"></script>
-                <script src="assets/vendor/js/jquery.min.js"></script>
-                <script src="assets/vendor/js/jquery-2.1.1.min.js"></script>
-                <script src="assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
-                <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/vendor/skycons/js/skycons.js"></script>
-                <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-                <script src="assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-                <script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
-                <script src="assets/plugins/maskedinput/js/jquery.maskedinput.js"></script>
-                <script src="assets/js/pages/form-elements.js"></script>
-
+<script src="assets/vendor/js/jquery.min.js"></script>
+<script src="assets/vendor/js/jquery-2.1.1.min.js"></script>
+<script src="assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/vendor/skycons/js/skycons.js"></script>
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+<script src="assets/plugins/maskedinput/js/jquery.maskedinput.js"></script>
+<script src="assets/js/pages/form-elements.js"></script>
+<script src="assets/js/pageHelper.js"></script>
 </body>
 
 </html>

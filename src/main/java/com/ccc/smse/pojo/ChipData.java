@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @Date: 2019-03-18 19:45
  * @Version 1.0
  */
+
 @Entity
 @Table(name = "chip_data")
 public class ChipData implements Serializable {
@@ -15,7 +16,6 @@ public class ChipData implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
-
     @Column(name = "batch_number")
     private String batchNumber;//批号
     @Column(name = "product_code")
@@ -42,10 +42,11 @@ public class ChipData implements Serializable {
     private String endTime;//当道结束时间
 
     @ManyToOne
-    @JoinColumn(name = "batch_number",referencedColumnName = "batch_number",insertable = false,updatable = false)
+    @JoinColumn(name = "batch_number",referencedColumnName = "batch_number",insertable = false,updatable = false,foreignKey = @ForeignKey(name = "null"))
     private ChipYield chipYield;//关联良率
 
     public ChipYield getChipYield() {
+        if (chipYield == null) return new ChipYield();
         return chipYield;
     }
 
@@ -155,5 +156,25 @@ public class ChipData implements Serializable {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ChipData{" +
+                "id='" + id + '\'' +
+                ", batchNumber='" + batchNumber + '\'' +
+                ", productCode='" + productCode + '\'' +
+                ", version='" + version + '\'' +
+                ", numberPieces=" + numberPieces +
+                ", processPeriod='" + processPeriod + '\'' +
+                ", process='" + process + '\'' +
+                ", processConditions='" + processConditions + '\'' +
+                ", workCenter='" + workCenter + '\'' +
+                ", workUnit='" + workUnit + '\'' +
+                ", operator='" + operator + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", chipYield=" + chipYield +
+                '}';
     }
 }

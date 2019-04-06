@@ -32,7 +32,7 @@ public class ChipDataController {
     @Autowired
     WebMenuService webMenuService;
     @GetMapping(value="index")
-    public String toChipYield(@RequestParam(required = false) String filterData,String start,String end,Model model){
+    public String toChipYield(@RequestParam(required = false) String filterData,@RequestParam(required = false)String jumpto, String start,String end,String q,Model model){
         /*菜单查询*/
         List<WebMenu> webMenuList = webMenuService.findAll();
         StringBuilder webMenu = new StringBuilder();
@@ -40,12 +40,16 @@ public class ChipDataController {
             webMenu.append(WebMenu);
         }
         model.addAttribute("webMenu",webMenu.toString());
+        if("data".equals(jumpto)){
+            return "data";
+        }
         List<ChipData> chipDatas;
-        if(StringUtil.isNull(filterData) && StringUtil.isNull(start) && StringUtil.isNull(end)) {
+        if(StringUtil.isNull(filterData) && StringUtil.isNull(start) && StringUtil.isNull(end) && StringUtil.isNull(q)) {
             chipDatas = chipDataService.findAll();
         } else {
             JSONObject jsonObject = JSON.parseObject(filterData);
             if(jsonObject == null) jsonObject = new JSONObject();
+            if(!StringUtil.isNull(q)) jsonObject.put("q",q);
             if(!StringUtil.isNull(start)) jsonObject.put("start",start);
             if(!StringUtil.isNull(end))jsonObject.put("end",end);
             chipDatas =chipDataService.findAllByConditions(jsonObject);
@@ -57,13 +61,14 @@ public class ChipDataController {
 
         for (int i = 0; i < chipDatas.size(); i++) {
             xAxis[i] = chipDatas.get(i).getBatchNumber();
+            if(chipDatas.get(i).getChipYield() == null){
+                yAxis[i] = 0;
+                continue;}
             String percent = chipDatas.get(i).getChipYield().getYield().replace("%","");
             yAxis[i] = Float.valueOf(percent) / 100;;
         }
         model.addAttribute("xAxis",xAxis);
         model.addAttribute("yAxis",yAxis);
-        System.out.println(start);
-        System.out.println(end);
         return "chipYield";
     }
 }

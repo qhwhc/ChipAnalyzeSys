@@ -4,6 +4,10 @@ import com.ccc.smse.common.util.ReturnInfoUtil;
 import com.ccc.smse.common.util.ReturnUtil;
 import com.ccc.smse.dao.ExcelDao;
 import com.ccc.smse.pojo.BankModel;
+import com.ccc.smse.pojo.ChipData;
+import com.ccc.smse.pojo.ChipYield;
+import com.ccc.smse.service.ChipDataService;
+import com.ccc.smse.service.ChipYieldService;
 import com.ccc.smse.service.ExcelService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +31,11 @@ import java.util.List;
 @Service
 public class ExcelServiceImpl implements ExcelService {
     @Autowired
-    ExcelDao excelDao;
+    private ChipDataService chipDataService;
 
+    @Autowired
+    private ChipYieldService chipYieldService;
+    SimpleDateFormat fm=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     /**
      *
      * @param fileName
@@ -37,8 +46,8 @@ public class ExcelServiceImpl implements ExcelService {
     @Override
     public ReturnInfoUtil getExcelInfo(String fileName, MultipartFile file) throws Exception {
         ReturnInfoUtil returnInfoUtil = new ReturnInfoUtil();
-        int[] resultCell = new int[]{0,3,4};//要将表中的哪几列传入数据库中，从0开始计数
-        List<BankModel> resultList = new ArrayList<>();
+
+
         if (!fileName.matches("^.+\\.(?i)(xls)$") && !fileName.matches("^.+\\.(?i)(xlsx)$")) {
             return ReturnUtil.error("上传文件格式不正确");
         }
@@ -54,16 +63,34 @@ public class ExcelServiceImpl implements ExcelService {
             wb = new XSSFWorkbook(is);
         }
         Sheet sheet = wb.getSheetAt(0);
-        resultList = getSheetVal(sheet, resultCell);
-        System.out.println("结果集---"+resultList);
-        try{
-            for(int i =0;i<resultList.size();i++){
-                excelDao.save(resultList.get(i));
+        if(sheet.getRow(0).getPhysicalNumberOfCells() > 10){
+            List<ChipData> resultList = new ArrayList<>();
+            int[] resultCell = new int[]{0,1,2,6,7,8,9,10,11,12,13,14};//要将表中的哪几列传入数据库中，从0开始计数
+            resultList = getSheetVal(sheet, resultCell);
+            System.out.println("结果集---"+resultList);
+            try{
+                for(int i =0;i<resultList.size();i++){
+                    chipDataService.save(resultList.get(i));
+                }
+                returnInfoUtil = ReturnUtil.success("");
+            }catch (Exception e){
+                e.printStackTrace();
+                returnInfoUtil = ReturnUtil.error("数据导入失败");
             }
-            returnInfoUtil = ReturnUtil.success("");
-        }catch (Exception e){
-            e.printStackTrace();
-            returnInfoUtil = ReturnUtil.error("数据导入失败");
+        }else {
+            List<ChipYield> resultList = new ArrayList<>();
+            int[] resultCell = new int[]{2,3,4,5};//要将表中的哪几列传入数据库中，从0开始计数
+            resultList = getYieldVal(sheet, resultCell);
+            System.out.println("结果集---"+resultList);
+            try{
+                for(int i =0;i<resultList.size();i++){
+                    chipYieldService.save(resultList.get(i));
+                }
+                returnInfoUtil = ReturnUtil.success("");
+            }catch (Exception e){
+                e.printStackTrace();
+                returnInfoUtil = ReturnUtil.error("数据导入失败");
+            }
         }
         return returnInfoUtil;
     }
@@ -75,49 +102,58 @@ public class ExcelServiceImpl implements ExcelService {
      * @return
      */
     public List getSheetVal(Sheet sheet, int[] resultCell){
-        List<BankModel> bankList = new ArrayList<>();//返回的结果集
+        List<ChipData> chipDataList = new ArrayList<>();//返回的结果集
         int[] resultIndex = new int[resultCell.length];//存储需要上传字段的下标
-        BankModel bank;
+        ChipData chipData;
         for (int r = 1; r <= sheet.getLastRowNum(); r++) {
             Row row = sheet.getRow(r);
             if (row == null) {
                 continue;
             }
-            bank = new BankModel();
+            chipData = new ChipData();
             for (int i = 0;i<row.getPhysicalNumberOfCells();i++){
-                String temp = getCellVal(row.getCell(i)).toString().trim();
+                String temp = row.getCell(i).toString().trim();
+                if(i == 13 || i == 14) temp = fm.format(row.getCell(i).getDateCellValue());
                 for (int j=0;j<resultCell.length;j++){
                     if (i==resultCell[j]){
                         switch (i){
                             case 0:
-                                bank.setDocNumber(temp);
+                                chipData.setBatchNumber(temp);
                                 break;
                             case 1:
-                                bank.setAccount(temp);
+                                chipData.setProductCode(temp);
                                 break;
                             case 2:
-                                bank.setFirstTime(temp);
-                                break;
-                            case 3:
-                                bank.setFlag(temp);
-                                break;
-                            case 4:
-                                bank.setUnit(temp);
-                                break;
-                            case 5:
-                                bank.setRemark(temp);
+                                chipData.setVersion(temp);
                                 break;
                             case 6:
-                                bank.setInfo(temp);
+                                double value = Double.valueOf(temp);
+                                int number = (int) value;
+                                chipData.setNumberPieces(number);
                                 break;
                             case 7:
-                                bank.setMoneyOut(temp);
+                                chipData.setProcessPeriod(temp);
                                 break;
                             case 8:
-                                bank.setMoneyIn(temp);
+                                chipData.setProcess(temp);
                                 break;
                             case 9:
-                                bank.setTimeEnd(temp);
+                                chipData.setProcessConditions(temp);
+                                break;
+                            case 10:
+                                chipData.setWorkCenter(temp);
+                                break;
+                            case 11:
+                                chipData.setWorkUnit(temp);
+                                break;
+                            case 12:
+                                chipData.setOperator(temp);
+                                break;
+                            case 13:
+                                chipData.setStartTime(temp);
+                                break;
+                            case 14:
+                                chipData.setEndTime(temp);
                                 break;
                             default:
                                 break;
@@ -127,11 +163,60 @@ public class ExcelServiceImpl implements ExcelService {
                     }
                 }
             }
-            bankList.add(bank);
+            chipDataList.add(chipData);
         }
-        return bankList;
+        return chipDataList;
     }
 
+
+    public List getYieldVal(Sheet sheet, int[] resultCell){
+        List<ChipYield> chipYieldList = new ArrayList<>();//返回的结果集
+        int[] resultIndex = new int[resultCell.length];//存储需要上传字段的下标
+        ChipYield chipYield;
+        for (int r = 1; r <= sheet.getLastRowNum(); r++) {
+            Row row = sheet.getRow(r);
+            if (row == null) {
+                continue;
+            }
+            chipYield = new ChipYield();
+            for (int i = 0;i<row.getPhysicalNumberOfCells();i++){
+                String temp = row.getCell(i).toString().trim();
+                try {
+                    for (int j=0;j<resultCell.length;j++){
+                        if (i==resultCell[j]){
+                            switch (i){
+                                case 2:
+                                    chipYield.setBatchNumber(temp);
+                                    break;
+                                case 3:
+                                    double value = Double.valueOf(temp);
+                                    int number = (int) value;
+                                    chipYield.setNumberPieces(number);
+                                    break;
+                                case 4:
+                                    double value1 = Double.valueOf(temp);
+                                    int number1 = (int) value1;
+                                    chipYield.setParticles(number1);
+                                    break;
+                                case 5:
+                                    double value2 = Double.valueOf(temp.replace("%",""));
+                                    chipYield.setYield(value2);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }else{
+                            continue;
+                        }
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            chipYieldList.add(chipYield);
+        }
+        return chipYieldList;
+    }
     /**
      *
      * @param cell
@@ -139,7 +224,7 @@ public class ExcelServiceImpl implements ExcelService {
      */
     public Object getCellVal(Cell cell){
         Object obj = null;
-        switch (cell.getCellTypeEnum()) {
+        switch (cell.getCellType()) {
             case BOOLEAN:
                 obj = cell.getBooleanCellValue();
                 break;
