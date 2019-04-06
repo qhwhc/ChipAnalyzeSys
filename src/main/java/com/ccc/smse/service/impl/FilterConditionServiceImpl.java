@@ -28,7 +28,7 @@ public class FilterConditionServiceImpl implements FilterConditionService {
         conditions.add(new FilterCondition().setDbName("process").setShowName("工序").setShowDatas(chipDataRepository.findProcess()));
         conditions.add(new FilterCondition().setDbName("processConditions").setShowName("工艺条件").setShowDatas(chipDataRepository.findProcessConditions()));
         conditions.add(new FilterCondition().setDbName("workCenter").setShowName("工作中心").setShowDatas(chipDataRepository.findWorkCenter()));
-        conditions.add(new FilterCondition().setDbName("workUnit(").setShowName("工作单元").setShowDatas(chipDataRepository.findWorkUnit()));
+        conditions.add(new FilterCondition().setDbName("workUnit").setShowName("工作单元").setShowDatas(chipDataRepository.findWorkUnit()));
         conditions.add(new FilterCondition().setDbName("operator").setShowName("操作人").setShowDatas(chipDataRepository.findOperator()));
         return conditions;
     }

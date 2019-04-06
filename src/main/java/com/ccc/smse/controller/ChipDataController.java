@@ -2,6 +2,7 @@ package com.ccc.smse.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ccc.smse.common.util.StringUtil;
 import com.ccc.smse.pojo.ChipData;
 import com.ccc.smse.pojo.WebMenu;
 import com.ccc.smse.service.ChipDataService;
@@ -40,10 +41,13 @@ public class ChipDataController {
         }
         model.addAttribute("webMenu",webMenu.toString());
         List<ChipData> chipDatas;
-        if("".equals(filterData) || filterData == null) {
+        if(StringUtil.isNull(filterData) && StringUtil.isNull(start) && StringUtil.isNull(end)) {
             chipDatas = chipDataService.findAll();
         } else {
             JSONObject jsonObject = JSON.parseObject(filterData);
+            if(jsonObject == null) jsonObject = new JSONObject();
+            if(!StringUtil.isNull(start)) jsonObject.put("start",start);
+            if(!StringUtil.isNull(end))jsonObject.put("end",end);
             chipDatas =chipDataService.findAllByConditions(jsonObject);
         }
         model.addAttribute("chipDatas",chipDatas);

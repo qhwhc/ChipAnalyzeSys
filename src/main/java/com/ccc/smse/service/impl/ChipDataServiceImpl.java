@@ -12,6 +12,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.xml.crypto.Data;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +29,8 @@ import java.util.Map;
 public class ChipDataServiceImpl implements ChipDataService {
     @Autowired
     ChipDataRepository chipDataRepository;
+    SimpleDateFormat fm=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yyyy");
     @Override
     public List<ChipData> findAll() {
         return chipDataRepository.findAll();
@@ -38,6 +43,21 @@ public class ChipDataServiceImpl implements ChipDataService {
             public Predicate toPredicate(Root<ChipData> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> params = new ArrayList<>();
                 for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+//                    时间处理
+                    try {
+                        if("start".equals(entry.getKey())) {
+                            System.out.println(entry.getValue());
+                            params.add(criteriaBuilder.greaterThanOrEqualTo(root.get("startTime").as(String.class), fm.format(sdf.parse(entry.getValue().toString()))));
+                            continue;
+                        }
+                        if("end".equals(entry.getKey())) {
+                            params.add(criteriaBuilder.lessThanOrEqualTo(root.get("endTime").as(String.class), fm.format(sdf.parse(entry.getValue().toString()))));
+                            continue;
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+//                    其他条件拼接
                     if(entry.getValue().toString().indexOf("&") > 0) {
                         String[] strs = entry.getValue().toString().split("&");
                         Predicate[] pres = new Predicate[strs.length];
